@@ -27,3 +27,9 @@ adjacent(1,2).         adjacent(2,1).
              adjacent(R1,R2),
            color(R1,Color,Coloring),
            color(R2,Color,Coloring).
+output
+adjacent( 2,3)
+adjacent (5,3)
+conflict (a)
+conflict (b)
+adjacent (3,R)
