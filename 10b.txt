@@ -1,0 +1,35 @@
+% Facts: Define some males, females, and parent relations
+male(john).
+male(michael).
+male(david).
+male(peter).
+female(mary).
+female(linda).
+female(susan).
+female(karen).
+parent(john, michael).
+parent(mary, michael).
+parent(john, susan).
+parent(mary, susan).
+parent(michael, david).
+parent(linda, david).
+parent(michael, karen).
+parent(linda, karen).
+parent(peter, john). % Grandfather's generation
+parent(susan, emily).
+parent(david, emily).
+% Rules:
+father(F, C) :- male(F), parent(F, C).
+mother(M, C) :- female(M), parent(M, C).
+grandfather(GF, GC) :- male(GF), parent(GF, P), parent(P, GC).
+grandmother(GM, GC) :- female(GM), parent(GM, P), parent(P, GC).
+brother(B, S) :- male(B), parent(P, B), parent(P, S), B \= S.
+sister(Sis, S) :- female(Sis), parent(P, Sis), parent(P, S), Sis \= S.
+uncle(U, N) :- male(U), parent(P, N), brother(U, P).
+aunt(A, N) :- female(A), parent(P, N), sister(A, P).
+nephew(Nep, A) :- male(Nep), parent(P, Nep), sibling(P, A).
+niece(Nic, A) :- female(Nic), parent(P, Nic), sibling(P, A).
+cousin(C1, C2) :- parent(P1, C1), parent(P2, C2), sibling(P1, P2), C1 \= C2.
+% sibling is either brother or sister
+sibling(X, Y) :- brother(X, Y).
+sibling(X, Y) :- sister(X, Y).
