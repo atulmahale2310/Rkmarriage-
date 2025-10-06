@@ -1,0 +1,4 @@
+is_a(sachin, batsman).
+is_a(batsman, cricketer).
+% Rule: transitive is_a relationship
+is_a(X, Z) :- is_a(X, Y), is_a(Y, Z). 
